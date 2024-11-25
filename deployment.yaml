@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: healthsync1
+  labels:
+    app: healthsync
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: healthsync
+  template:
+    metadata:
+      labels:
+        app: healthsync
+    spec:
+      containers:
+        - name: healthsync
+          image: asvini2107/healthsync:latest
+          ports:
+            - containerPort: 3000
