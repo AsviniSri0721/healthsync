@@ -7,10 +7,10 @@ phases:
 
   build:
     commands:
-      - docker build -t healthsync .
-      - docker tag healthsync:latest 980921726555.dkr.ecr.ap-south-1.amazonaws.com/healthsync:latest
+      - docker build -t newhealthsync .
+      - docker tag newhealthsync:latest 980921726555.dkr.ecr.ap-south-1.amazonaws.com/newhealthsync:latest
 
   post_build:
     commands:
-      - docker push 980921726555.dkr.ecr.ap-south-1.amazonaws.com/healthsync:latest
+      - docker push 980921726555.dkr.ecr.ap-south-1.amazonaws.com/newhealthsync:latest
       
