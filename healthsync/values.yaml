@@ -1,0 +1,101 @@
+# Default values for healthsync.
+# Declare variables to be passed into your templates.
+
+# Set the replicaset count based on your deployment.yaml
+replicaCount: 3
+
+# Image configuration as per your deployment.yaml and buildspec.yaml
+image:
+  repository: 980921726555.dkr.ecr.ap-south-1.amazonaws.com/newhealthsync
+  pullPolicy: Always
+  tag: latest
+
+# Image pull secrets (if required, for private ECR access)
+imagePullSecrets:
+  - name: ecr-secret
+
+# Overrides for chart name (if needed)
+nameOverride: ""
+fullnameOverride: ""
+
+# Service account configuration
+serviceAccount:
+  create: true
+  automount: true
+  annotations: {}
+  name: ""
+
+# Pod annotations and labels (if additional metadata is required)
+podAnnotations: {}
+podLabels: {}
+
+# Pod security context (if needed)
+podSecurityContext: {}
+  # fsGroup: 2000
+
+# Container security context (if needed)
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+# Service configuration (matching the ClusterIP type in deployment.yaml)
+service:
+  type: ClusterIP
+  port: 3000
+
+# Ingress configuration with ALB-specific annotations
+ingress:
+  enabled: true
+  className: alb
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    kubernetes.io/ingress.class: alb
+  hosts:
+    - host: healthsync.local
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls: []
+
+# Resource requests and limits
+resources:
+  requests:
+    cpu: "250m"
+    memory: "256Mi"
+  limits:
+    cpu: "500m"
+    memory: "512Mi"
+
+# Liveness and readiness probes
+livenessProbe:
+  httpGet:
+    path: /health
+    port: 3000
+  initialDelaySeconds: 10
+  periodSeconds: 15
+readinessProbe:
+  httpGet:
+    path: /ready
+    port: 3000
+  initialDelaySeconds: 5
+  periodSeconds: 10
+
+# Autoscaling configuration (disabled by default)
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 80
+
+# Additional volumes and volume mounts (if needed)
+volumes: []
+volumeMounts: []
+
+# Node selector, tolerations, and affinity
+nodeSelector: {}
+tolerations: []
+affinity: {}

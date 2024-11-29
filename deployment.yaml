@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: healthsync
-          image: asvini2107/healthsync:latest
+          image: 980921726555.dkr.ecr.ap-south-1.amazonaws.com/newhealthsync:latest
           ports:
             - containerPort: 3000

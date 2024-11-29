@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: healthsync
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /healthsync/*
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: healthsync
+                port:
+                  number: 3004
+          
