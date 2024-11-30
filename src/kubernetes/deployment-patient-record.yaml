@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: patient-record-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: patient-record
+  template:
+    metadata:
+      labels:
+        app: patient-record
+    spec:
+      containers:
+      - name: patient-record
+        image: 980921726555.dkr.ecr.ap-south-1.amazonaws.com/patient-record:latest
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: patient-record-service
+spec:
+  selector:
+    app: patient-record
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer

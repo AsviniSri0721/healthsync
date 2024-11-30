@@ -1,21 +1,10 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "declaration": true,
-    "removeComments": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true,
-    "target": "ES2021",
-    "sourceMap": true,
-    "outDir": "./dist",
-    "baseUrl": "./",
-    "incremental": true,
-    "skipLibCheck": true,
-    "strictNullChecks": false,
-    "noImplicitAny": false,
-    "strictBindCallApply": false,
-    "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
+    "target": "es2020",  // Target ES2020 JavaScript
+    "module": "commonjs",  // CommonJS for Node.js
+    "lib": ["es2020", "dom"],  // Include libraries for ES2020 and DOM
+    "strict": true,  // Enable strict type checking
+    "esModuleInterop": true,  // Enable interop between ES and CommonJS modules
+    "skipLibCheck": true  // Skip checking libraries for performance
   }
 }

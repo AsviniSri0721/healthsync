@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: appointment-scheduling-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: appointment-scheduling
+  template:
+    metadata:
+      labels:
+        app: appointment-scheduling
+    spec:
+      containers:
+      - name: appointment-scheduling
+        image: 980921726555.dkr.ecr.ap-south-1.amazonaws.com/appointment-scheduling:latest
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: appointment-scheduling-service
+spec:
+  selector:
+    app: appointment-scheduling
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer

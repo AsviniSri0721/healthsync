@@ -1,16 +1,8 @@
-# Use Node.js as the base image
-FROM node:18
-
-WORKDIR /usr/src/app
-
-COPY package.json package-lock.json ./
-
+FROM node:16-alpine
+WORKDIR /app
+COPY package*.json ./
 RUN npm install
-
 COPY . .
-
 RUN npm run build
-
+CMD ["node", "dist/main"]
 EXPOSE 3000
-
-CMD ["node", "dist/main.js"]
