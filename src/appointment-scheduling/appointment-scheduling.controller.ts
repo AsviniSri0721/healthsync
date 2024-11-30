@@ -4,8 +4,9 @@ import { Controller, Get } from '@nestjs/common';
 @Controller('appointment-scheduling')
 export class AppointmentSchedulingController {
     constructor(private readonly appointmentSchedulingService: AppointmentSchedulingService) {}
-    @Get()
+
+    @Get()  // or @Get('your-specific-route')
     getHello(): string {
-      return this.appointmentSchedulingService.getAppointmentMessage();
+        return this.appointmentSchedulingService.getAppointmentMessage();
     }
 }
