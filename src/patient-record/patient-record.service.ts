@@ -4,6 +4,11 @@ import { Injectable } from '@nestjs/common';
 export class PatientRecordService {
   private patientRecords = [];
 
+
+  getPatientMessage(){
+    return 'From patient'
+  }
+  
   createPatientRecord(record: any) {
     this.patientRecords.push(record);
     return record;

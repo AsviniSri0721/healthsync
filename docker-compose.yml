@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  appointment-scheduling:
+    build:
+      context: ./src/appointment-scheduling
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+    networks:
+      - app-network
+
+  patient-record:
+    build:
+      context: ./src/patient-record
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    environment:
+      NODE_ENV: production
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  db_data:

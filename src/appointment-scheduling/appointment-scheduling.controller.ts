@@ -1,4 +1,11 @@
-import { Controller } from '@nestjs/common';
+import { AppointmentSchedulingService } from './appointment-scheduling.service';
+import { Controller, Get } from '@nestjs/common';
 
 @Controller('appointment-scheduling')
-export class AppointmentSchedulingController {}
+export class AppointmentSchedulingController {
+    constructor(private readonly appointmentSchedulingService: AppointmentSchedulingService) {}
+    @Get()
+    getHello(): string {
+      return this.appointmentSchedulingService.getAppointmentMessage();
+    }
+}

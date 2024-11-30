@@ -4,6 +4,10 @@ import { Injectable } from '@nestjs/common';
 export class AppointmentSchedulingService {
   private appointments = [];
 
+  getAppointmentMessage(){
+    return 'Hello from appointment'
+  }
+
   bookAppointment(appointment: any) {
     this.appointments.push(appointment);
     return appointment;

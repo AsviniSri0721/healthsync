@@ -3,6 +3,10 @@
 /node_modules
 /build
 
+/src/appointment-scheduling/node_modules
+/src/patient-record/node_modules
+/src/notification/node_modules
+
 # Logs
 logs
 *.log
