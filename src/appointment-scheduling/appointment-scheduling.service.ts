@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class AppointmentSchedulingService {
-  private appointments = [];
+  private appointments:any = [];
 
   getAppointmentMessage(){
     return 'Hello from appointment'
@@ -18,7 +18,7 @@ export class AppointmentSchedulingService {
   }
 
   cancelAppointment(id: string) {
-    this.appointments = this.appointments.filter(appointment => appointment.id !== id);
+    this.appointments = this.appointments.filter((appointment:any) => appointment.id !== id);
     return { message: 'Appointment canceled' };
   }
 }

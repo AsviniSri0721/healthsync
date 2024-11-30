@@ -1,10 +1,16 @@
 {
   "compilerOptions": {
-    "target": "es2020",  // Target ES2020 JavaScript
-    "module": "commonjs",  // CommonJS for Node.js
-    "lib": ["es2020", "dom"],  // Include libraries for ES2020 and DOM
-    "strict": true,  // Enable strict type checking
-    "esModuleInterop": true,  // Enable interop between ES and CommonJS modules
-    "skipLibCheck": true  // Skip checking libraries for performance
-  }
+    "target": "ES2020",
+    "module": "commonjs",
+    "lib": ["es2020", "dom"],
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "outDir": "./dist"
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
 }

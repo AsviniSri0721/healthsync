@@ -4,7 +4,7 @@ import { PatientRecordService } from './patient-record.service';
 @Controller('patient-record')
 export class PatientRecordController {
     constructor(private readonly patientRecordService: PatientRecordService) {}
-    @Get()
+    @Get('')
     getHello(): string {
       return this.patientRecordService.getPatientMessage();
     }

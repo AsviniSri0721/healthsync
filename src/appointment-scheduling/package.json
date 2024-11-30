@@ -1,9 +1,9 @@
 {
-  "name": "appointment-scheduling",
+  "name": "appointment-reords",
   "version": "1.0.0",
   "scripts": {
-    "start": "node dist/main.js",
-    "build": "tsc"
+    "start": "nest start",
+    "build": "nest build"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
