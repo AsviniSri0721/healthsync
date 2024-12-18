@@ -4,21 +4,27 @@ phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
-      - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 980921726555.dkr.ecr.ap-south-1.amazonaws.com
+      - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 476658066203.dkr.ecr.ap-south-1.amazonaws.com
+      - echo Setting up services...
       - export SERVICES=("appointment-scheduling" "patient-record")
 
   build:
     commands:
+      - echo Building Docker images...
       - |
         for service in "${SERVICES[@]}"; do
-          docker build -t $service .
-          docker tag $service:latest 980921726555.dkr.ecr.ap-south-1.amazonaws.com/$service:latest
+          docker build -t $service ./src/$service
+          docker tag $service:latest 476658066203.dkr.ecr.ap-south-1.amazonaws.com/$service:latest
         done
 
   post_build:
     commands:
+      - echo Pushing Docker images to ECR...
       - |
         for service in "${SERVICES[@]}"; do
-          docker push 980921726555.dkr.ecr.ap-south-1.amazonaws.com/$service:latest
+          docker push 476658066203.dkr.ecr.ap-south-1.amazonaws.com/$service:latest
         done
-      
+
+artifacts:
+  files:
+    - '**/*'
